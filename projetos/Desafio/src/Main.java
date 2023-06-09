@@ -5,14 +5,15 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         int opçao=0;
+        List<Venda> listaDeVenda=new ArrayList<>();
         List<Cliente> listaDeCliente=new ArrayList<>();
-        Cliente c1=new Cliente("cpf","email");
+        Cliente c1=new Cliente("111111111111","cliente@email");
         listaDeCliente.add(c1);
         List<Vendedor> listaDeVendedor=new ArrayList<>();
-        Vendedor v1=new Vendedor("cpf","email");
+        Vendedor v1=new Vendedor("22222222222","vendedor@email");
         listaDeVendedor.add(v1);
         List<Produto> listaDeProduto=new ArrayList<>();
-        Produto p1=new Produto("nome","codigo",10);
+        Produto p1=new Produto("produto1","123",10);
         listaDeProduto.add(p1);
         Scanner scanner= new Scanner(System.in);
         System.out.println("menu");
@@ -35,8 +36,28 @@ public class Main {
                 listaDeProduto.add(produto);
                 System.out.println("produto cadastrado");
                 System.out.println("quantidade de produto cadastrados: "+ listaDeProduto.size());
-            } else if (opçao==2){
-                System.out.println("produto comprado");
+            } else if (opçao==2) {
+                System.out.println("escolha um produto:");
+                for (int i = 0; i < listaDeProduto.size(); i++) {
+                    System.out.println("escolha " + i + ": " + listaDeProduto.get(i));
+                }
+                int escolhaProduto = scanner.nextInt();
+                System.out.println("escolha um cliente:");
+                for (int i = 0; i < listaDeCliente.size(); i++) {
+                    System.out.println("escolha " + i + ": " + listaDeCliente.get(i));
+                }
+                int escolhaCliente = scanner.nextInt();
+                System.out.println("escolha um vendedor:");
+                for (int i = 0; i < listaDeVendedor.size(); i++) {
+                    System.out.println("escolha " + i + ": " + listaDeVendedor.get(i));
+                }
+                int escolhaVendedor = scanner.nextInt();
+                System.out.println("escolha a quantidade:");
+                int escolhaQuantidade = scanner.nextInt();
+                Venda venda=new Venda(listaDeVendedor.get(escolhaVendedor),listaDeCliente.get(escolhaCliente),listaDeProduto.get(escolhaProduto),escolhaQuantidade);
+                listaDeVenda.add(venda);
+                System.out.println("quantidade de produtos na venda: "+ listaDeVenda.size());
+                System.out.println("venda confirmada");
             } else if (opçao==3){
                 System.out.println("Informe o cpf do cliente: ");
                 String cpf= scanner.next();
